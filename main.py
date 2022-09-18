@@ -10,14 +10,14 @@ import matplotlib.pyplot as plt
 from datetime import date, timedelta
 
 today = date.today()
-ten_days_ago = today - timedelta(days=10)
+buffer = today - timedelta(days=20)
 
 # (20/20 points) Using an API of your choice (yfinance works), collect the closing price of 5 of your favorite stock tickers for the last 10 trading days.
 # (10/10 points) Store this information in a list that you will convert to a ndarray in NumPy.
 
 data = yf.download(
     tickers="aapl dis tsla crsr msft",
-    start=ten_days_ago.isoformat(),
+    start=buffer.isoformat(),
     end=today.isoformat(),
 )
 
@@ -30,7 +30,7 @@ for ticker in adj_close:
     plt.close()
 
     # parse the price data
-    array = np.array([price for price in adj_close[ticker]])
+    array = np.array([price for price in adj_close[ticker][:10]])
 
     # plot and save the graphs
     plt.plot(array)
