@@ -25,7 +25,7 @@ adj_close = data["Adj Close"]
 
 # (10/10 points) Plot these 5 graphs. Feel free to add as much information to the graphs as you like exploring the documentation for matplotlib. At minimum it just needs to show 10 data points.
 # (10/10 points) Save these graphs in a folder called charts as PNG files. Do not upload these to your project folder, the project should save these when it executes. You may want to add this folder to your .gitignore file.
-for ticker in adj_close:
+for i, ticker in enumerate(adj_close):
     # close any existing figures to avoid copying it over in our new PNG
     plt.close()
 
@@ -33,6 +33,16 @@ for ticker in adj_close:
     array = np.array([price for price in adj_close[ticker][:10]])
 
     # plot and save the graphs
+    fig, ax = plt.subplots()
+
+    ax.set_title("Stock vs Trading Day")
+    ax.set_xlabel("Num trading days ago")
+    ax.set_ylabel("Stock")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.grid(color="grey", linestyle="-", linewidth=0.25, alpha=0.5)
+
+    # plt.show()
     plt.plot(array)
     plt.savefig(f"./charts/{ticker}.png")
 
