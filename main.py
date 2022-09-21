@@ -1,3 +1,5 @@
+#! ./venv/Scripts/python
+
 # INF601 - Advanced Programming in Python
 # Krushil Naik
 # Mini Project 1
